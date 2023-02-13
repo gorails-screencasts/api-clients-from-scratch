@@ -1,0 +1,22 @@
+require "test_helper"
+
+class <%= class_name %>ClientTest < ActiveSupport::TestCase
+  setup do
+    @client = <%= class_name %>Client.new(token: "test")
+  end
+
+  test "posts" do
+    stub_request(:get, "https://example.org/posts")
+    @client.posts
+  end
+
+  test "update post" do
+    stub_request(:patch, "https://example.org/posts/1").with(body: {"post" => {"description" => "hello world"}})
+    @client.update_post(1, description: "hello world")
+  end
+
+  test "delete post" do
+    stub_request(:delete, "https://example.org/posts/1")
+    @client.delete_post(1)
+  end
+end

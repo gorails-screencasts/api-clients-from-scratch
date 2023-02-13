@@ -1,6 +1,8 @@
 require "net/http"
 
 class ApplicationClient
+  BASE_URI = "https://example.org"
+
   attr_reader :token
 
   def initialize(token:)
